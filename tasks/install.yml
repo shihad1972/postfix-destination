@@ -1,0 +1,8 @@
+---
+
+- name: Install postfix and associated packages
+  become: true
+  apt:
+    name: "{{ postfix_apt_pkgs }}"
+    state: installed
+  when: '"apt" in ansible_pkg_mgr'
