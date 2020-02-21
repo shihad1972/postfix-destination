@@ -1,0 +1,39 @@
+---
+
+- name: Create SSL key directory for postfix
+  become: true
+  file:
+    path: "{{ postfix_keydir }}"
+    group: root
+    owner: root
+    mode: "0700"
+    state: directory
+
+- name: Create SSL certificate directory for postfix
+  become: true
+  file:
+    path: "{{ postfix_crtdir }}"
+    group: root
+    owner: root
+    mode: "0755"
+    state: directory
+
+- name: Copy private key
+  become: true
+  copy:
+    src: "{{ my_fqdn }}.pem"
+    dest: "{{ postfix_keydir }}/{{ postfix_key_file }}"
+    mode: "0600"
+    owner: root
+    group: root
+  notify: restart postfix
+
+- name: Copy public key
+  become: true
+  copy:
+    src: "{{ my_fqdn }}.crt"
+    dest: "{{ postfix_crtdir }}/{{ postfix_cert_file }}"
+    mode: "0644"
+    owner: root
+    group: root
+  notify: restart postfix

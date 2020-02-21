@@ -4,4 +4,6 @@
 - include_tasks: install.yml
 - include_tasks: spam.yml
   when: do_spam|bool
+- include_tasks: ssl.yml
+  when: do_ssl|bool
 - include_tasks: configure.yml

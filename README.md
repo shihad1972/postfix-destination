@@ -11,6 +11,8 @@ No additional requirements are necessary
 Role Variables
 --------------
 
+my_fqdn: FQDN of the mail server. Defaults to ansible_fqdn
+my_domain: DNS Domain of the mail server. Defaults to ansible_domain
 do_ssl: Boolean. Configure a TLS / SSL listener
 do_spam: Configure spamassassin content filtering
 do_inbound_sasl: Allow authentication on _this_ SMTP server

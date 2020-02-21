@@ -2,8 +2,8 @@
 # defaults file for postfix-destination
 
 postfix_config: /etc/postfix
-postfix_fqdn: "{{ ansible_fqdn }}"
-postfix_domain: "{{ ansible_domain }}"
+my_fqdn: "{{ ansible_fqdn }}"
+my_domain: "{{ ansible_domain }}"
 do_ssl: true
 do_sasl_inbound: true
 do_sasl_outbound: true
