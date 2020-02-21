@@ -6,3 +6,10 @@
     name: "{{ postfix_apt_pkgs }}"
     state: present
   when: '"apt" in ansible_pkg_mgr'
+
+- name: Enable postfix service
+  become: true
+  service:
+    name: postfix
+    enabled: true
+    state: started

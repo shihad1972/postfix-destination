@@ -1,0 +1,19 @@
+---
+
+- name: Create main.cf from template
+  template:
+    dest: "{{ postfix_config }}/main.cf"
+    src: main.cf.j2
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart postfix
+
+- name: Create master.cf file from template
+  template:
+    dest: "{{ postfix_config }}/master.cf"
+    src: master.cf.j2
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart postfix
