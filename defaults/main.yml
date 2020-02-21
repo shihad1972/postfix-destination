@@ -6,6 +6,7 @@ postfix_keydir: "{{ postfix_config }}/tls.keys"
 postfix_crtdir: "{{ postfix_config }}/tls.certificates"
 postfix_key_file: "{{ my_fqdn }}.pem"
 postfix_cert_file: "{{ my_fqdn }}.crt"
+my_tls_protocols: "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1"
 my_fqdn: "{{ ansible_fqdn }}"
 my_domain: "{{ ansible_domain }}"
 do_ssl: true
