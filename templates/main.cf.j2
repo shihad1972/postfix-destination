@@ -4,15 +4,30 @@ append_dot_mydomain = no
 readme_directory = /usr/share/doc/postfix
 html_directory = /usr/share/doc/postfix/html
 compatibility_level = 2
+
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+
+# Network Configuration
+
 myhostname = {{ my_fqdn }}
-alias_maps = hash:/etc/aliases
-alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
 mydestination = $myhostname, {{ my_fqdn }}, localhost.{{ my_domain }}, localhost
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
-mailbox_size_limit = 0
-recipient_delimiter = +
 inet_interfaces = all
 inet_protocols = all
-html_directory = /usr/share/doc/postfix/html
+
+{% if do_ssl is sameas true %}
+# SSL configuration. Added when do_ssl is true in ansible role
+smtpd_tls_cert_file={{ postfix_crtdir }}/{{ postfix_cert_file }}
+smtpd_tls_key_file={{ postfix_keydir }}/{{ postfix_key_file }}
+smtpd_use_tls=yes
+smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+{% endif %}
+
+# Posfix maps
+
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+mailbox_size_limit = 0
+recipient_delimiter = +

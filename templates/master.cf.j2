@@ -3,6 +3,18 @@ smtp      inet  n       -       y       -       -       smtpd -o content_filter=
 {% else %}
 smtp      inet  n       -       y       -       -       smtpd
 {% endif %}
+{% if do_ssl is sameas true %}
+smtps     inet  n       -       y       -       -       smtpd
+  {% if do_spam is sameas true %}
+  -o content_filter=spamassassin
+  {% endif %}
+  -o smtpd_tls_wrappermode=yes
+submission inet n       -       y       -       -       smtpd
+  {% if do_spam is sameas true %}
+  -o content_filter=spamassassin
+  {% endif %}
+  -o smtpd_tls_security_level=encrypt
+{% endif %}
 pickup    unix  n       -       y       60      1       pickup
 cleanup   unix  n       -       y       -       0       cleanup
 qmgr      unix  n       -       n       300     1       qmgr
@@ -41,6 +53,7 @@ scalemail-backend unix  -       n       n       -       2       pipe
 mailman   unix  -       n       n       -       -       pipe
   flags=FR user=list argv=/usr/lib/mailman/bin/postfix-to-mailman.py
   ${nexthop} ${user}
+{% if do_spam is sameas true %}
 spamassassin unix - n n - - pipe
   user=debian-spamd argv=/usr/bin/spamc -f -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
-
+{% endif %}
