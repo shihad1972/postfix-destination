@@ -1,6 +1,7 @@
 ---
 
 - name: Create main.cf from template
+  become: true
   template:
     dest: "{{ postfix_config }}/main.cf"
     src: main.cf.j2
@@ -10,6 +11,7 @@
   notify: restart postfix
 
 - name: Create master.cf file from template
+  become: true
   template:
     dest: "{{ postfix_config }}/master.cf"
     src: master.cf.j2
