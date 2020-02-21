@@ -1,2 +1,15 @@
 ---
 # handlers file for postfix-destination
+
+- name: restart postfix
+  become: true
+  service:
+    name: postfix
+    state: restarted
+
+- name: restart spamassassin
+  become: true
+  service:
+    name: spamassassin
+    state: restarted
+
