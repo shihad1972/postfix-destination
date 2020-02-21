@@ -11,6 +11,15 @@ No additional requirements are necessary
 Role Variables
 --------------
 
+do_ssl: Boolean. Configure a TLS / SSL listener
+do_spam: Configure spamassassin content filtering
+do_inbound_sasl: Allow authentication on _this_ SMTP server
+do_outbound_sasl: Allow outbound connections to authenticate to a relay host
+outbound_sasl_maps: Mappings of relayhost / username and password combinations
+        Array of dicts; dict has following keys:
+        - relayhost:
+          username:
+          password:
 
 Dependencies
 ------------

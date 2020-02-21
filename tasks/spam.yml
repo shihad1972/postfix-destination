@@ -1,0 +1,29 @@
+---
+
+- name: Install Spamassassin packages
+  become: true
+  package:
+    name:
+      - sa-compile
+      - spamassassin
+      - spamc
+    state: present
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Create Spamassassin configuration file
+  become: true
+  copy:
+    src: local.cf
+    dest: /etc/spamassassin/local.cf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart spamassassin
+
+- name: Ensure Spamassasin service is started
+  become: true
+  service:
+    name: spamassassin
+    state: started
+    enabled: true
+

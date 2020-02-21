@@ -2,3 +2,5 @@
 # tasks file for postfix-destination
 
 - include_tasks: install.yml
+- include_tasks: spam.yml
+  when: do_spam|bool
