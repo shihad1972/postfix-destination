@@ -29,4 +29,4 @@
     owner: root
     group: root
   notify: postmap sasl
-  when: do_sasl_outbound|bool and outbound_sasl_maps is defined
+  when: outbound_sasl_maps is defined
