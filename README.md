@@ -16,10 +16,9 @@ my_domain: DNS Domain of the mail server. Defaults to ansible_domain
 my_tls_protocols: List of TLS protocols to allow. Defaults to "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1"
 do_ssl: Boolean. Configure a TLS / SSL listener. Defaults to true
 do_spam: Configure spamassassin content filtering. Defaults to true
-do_inbound_sasl: Allow authentication on _this_ SMTP server
-do_outbound_sasl: Allow outbound connections to authenticate to a relay host
+do_inbound_sasl: Allow authentication on _this_ SMTP server. Defaults to true.
 outbound_sasl_maps: Mappings of relayhost / username and password combinations
-        Array of dicts; dict has following keys:
+        to authenticate with remote SMTP hosts. Array of dicts; dict has following keys:
         - relayhost:
           username:
           password:

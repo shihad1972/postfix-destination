@@ -43,12 +43,10 @@ smtpd_sasl_type = dovecot
 smtpd_sasl_path = private/auth
 smtpd_sasl_local_domain = {{ my_fqdn }}
 {% endif %}
-{% if do_sasl_outbound is sameas true %}
-{% if postfix_sasl_maps is defined %}
+{% if outbound_sasl_maps is defined %}
 # SASL maps to login to remote systems
 smtp_sasl_mechanism_filter = login
 smtp_sasl_password_maps = hash:{{ postfix_sasl_maps }}
-{% endif %}
 {% endif %}
 
 # Posfix maps
