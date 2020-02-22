@@ -21,8 +21,8 @@
 - name: Copy private key
   become: true
   copy:
-    src: "{{ postfix_key_file }}"
-    dest: "{{ postfix_keydir }}/{{ postfix_key_file }}"
+    src: "{{ key_file }}"
+    dest: "{{ postfix_keydir }}/{{ key_file }}"
     mode: "0600"
     owner: root
     group: root
@@ -31,8 +31,8 @@
 - name: Copy public key
   become: true
   copy:
-    src: "{{ postfix_cert_file }}"
-    dest: "{{ postfix_crtdir }}/{{ postfix_cert_file }}"
+    src: "{{ cert_file }}"
+    dest: "{{ postfix_crtdir }}/{{ cert_file }}"
     mode: "0644"
     owner: root
     group: root

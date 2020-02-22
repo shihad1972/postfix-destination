@@ -4,9 +4,10 @@
 postfix_config: /etc/postfix
 postfix_keydir: "{{ postfix_config }}/tls.keys"
 postfix_crtdir: "{{ postfix_config }}/tls.certificates"
-postfix_key_file: "{{ my_fqdn }}.pem"
-postfix_cert_file: "{{ my_fqdn }}.crt"
 postfix_sasl_maps: "{{ postfix_config }}/sasl_maps"
+
+key_file: "{{ my_fqdn }}.pem"
+cert_file: "{{ my_fqdn }}.crt"
 
 my_tls_protocols: "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1"
 my_fqdn: "{{ ansible_fqdn }}"
