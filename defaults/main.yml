@@ -16,3 +16,10 @@ my_domain: "{{ ansible_domain }}"
 do_ssl: true
 do_sasl_inbound: true
 do_spam: true
+do_ldap: false
+
+users_ou: users
+groups_ou: groups
+ldap_auth:
+  bind_dn: "cn={{ admin_rdn | default('manager') }}, {{ domain | hostname_to_dn}}"
+  bind_pw: "{{ admin_password }}"

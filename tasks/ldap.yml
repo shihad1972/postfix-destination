@@ -1,0 +1,15 @@
+---
+
+- assert:
+    that:
+    - domain is defined
+    - admin_rdn is defined
+    - admin_password is defined
+    msg: "Required variable not set."
+
+- name: Install postfix LDAP package
+  become: true
+  apt:
+    name: postfix-ldap
+    state: present
+  when: '"apt" in ansible_pkg_mgr'
