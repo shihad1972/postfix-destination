@@ -29,6 +29,21 @@ smtpd_tls_exclude_ciphers = aNULL, LOW, EXP, MEDIUM, ADH, AECDH, MD5,
                             DSS, ECDSA, CAMELLIA128, 3DES, CAMELLIA256,
                             RSA+AES, eNULL
 {% endif %}
+{% if do_sasl_inbound is sameas true or do_sasl_outbound is sameas true %}
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_security_options = noanonymous
+{% endif %}
+{% if do_sasl_inbound is sameas true %}
+# Inbound SMTP authentication; requires dovecot to be installed
+# and configured for SASL authentication.
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_local_domain = {{ my_fqdn }}
+{% endif %}
+{% if do_sasl_outbound is sameas true %}
+smtp_sasl_mechanism_filter = login
+smtp_sasl_password_maps = hash:{{ postfix_sasl_maps }}
+{% endif %}
 
 # Posfix maps
 

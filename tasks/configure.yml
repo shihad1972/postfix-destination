@@ -19,3 +19,14 @@
     owner: root
     group: root
   notify: restart postfix
+
+- name: Create postfix SASL maps for outbound authentication
+  become: true
+  template:
+    dest: "{{ postfix_sasl_maps }}"
+    src: sasl_maps.j2
+    mode: 0600
+    owner: root
+    group: root
+  notify: postmap sasl
+  when: do_sasl_outbound|bool and outbound_sasl_maps is defined
