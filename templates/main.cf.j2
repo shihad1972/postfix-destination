@@ -34,6 +34,7 @@ smtpd_sasl_auth_enable = yes
 smtpd_sasl_security_options = noanonymous
 {% endif %}
 {% if do_sasl_inbound is sameas true %}
+
 # Inbound SMTP authentication; requires dovecot to be installed
 # and configured for SASL authentication.
 smtpd_sasl_type = dovecot
