@@ -5,3 +5,4 @@ postfix_apt_pkgs:
   - postfix
   - postfix-doc
   - postfix-pcre
+  - pflogsumm

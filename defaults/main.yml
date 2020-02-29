@@ -6,6 +6,9 @@ postfix_keydir: "{{ postfix_config }}/tls.keys"
 postfix_crtdir: "{{ postfix_config }}/tls.certificates"
 postfix_sasl_maps: "{{ postfix_config }}/sasl_maps"
 
+# My specific alias
+monkey@thargoid.co.uk
+
 key_file: "{{ my_fqdn }}.pem"
 cert_file: "{{ my_fqdn }}.crt"
 

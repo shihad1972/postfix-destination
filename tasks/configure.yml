@@ -30,3 +30,11 @@
     group: root
   notify: postmap sasl
   when: outbound_sasl_maps is defined
+
+- name: Add root email alias
+  become: true
+  lineinfile:
+    dest: /etc/aliases
+    regexp: ^root
+    line: "root: {{ root_alias }}"
+  notify: newaliases
