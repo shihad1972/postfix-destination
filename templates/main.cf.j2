@@ -29,7 +29,7 @@ smtpd_tls_exclude_ciphers = aNULL, LOW, EXP, MEDIUM, ADH, AECDH, MD5,
                             DSS, ECDSA, CAMELLIA128, 3DES, CAMELLIA256,
                             RSA+AES, eNULL
 {% endif %}
-{% if do_sasl_inbound is sameas true or do_sasl_outbound is sameas true %}
+{% if do_sasl_inbound is sameas true or outbound_sasl_maps is defined %}
 
 # Start of the SASL configuration
 smtpd_sasl_auth_enable = yes
@@ -52,6 +52,8 @@ smtp_sasl_password_maps = hash:{{ postfix_sasl_maps }}
 # Posfix maps
 
 alias_maps = hash:/etc/aliases
+{% if do_ldap is sameas false %}
 alias_database = hash:/etc/aliases
+{% endif %}
 mailbox_size_limit = 0
 recipient_delimiter = +

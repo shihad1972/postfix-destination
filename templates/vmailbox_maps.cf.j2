@@ -1,0 +1,15 @@
+server_host = ldap://{{ ldap_hostname | default('localhost') }}
+start_tls = {{ ldap_tls | default('no') }}
+version = 3
+search_base = ou={{ users_ou }},{{ domain_dn }}
+scope = sub
+{% if do_bind is sameas true %}
+bind = yes
+bind_dn = {{ postfix_bind_dn }}
+bind_pw = {{ postfix_bind_pass }}
+{% else %}
+bind = no
+{% endif %}
+query_filter = maildrop=%s
+result_attribute = homeDirectory
+result_format = %s/mailbox/

@@ -13,3 +13,82 @@
     name: postfix-ldap
     state: present
   when: '"apt" in ansible_pkg_mgr'
+
+- name: Create postfix LDAP configuration directory
+  become: true
+  file:
+    state: directory
+    mode: 0750
+    owner: root
+    group: root
+    path: "{{ postfix_ldapdir }}"
+
+- name: Create postfix ldap lookup configuration
+  become: true
+  template:
+    src: lookup.cf.j2
+    dest: "{{ postfix_ldap_path }}/lookup.cf"
+    owner: root
+    group: postfix
+    mode: 0640
+  notify: restart postfix
+
+- name: Configure virtual alias maps lookup
+  become: true
+  template:
+    src: valias_maps.cf.j2
+    dest: "{{ postfix_ldap_path }}/valias_maps.cf"
+    owner: root
+    group: postfix
+    mode: 0640
+  notify: restart postfix
+
+- name: Add virtual alias domains ldap lookup
+  become: true
+  template:
+    src: valias_domains.cf.j2
+    dest: "{{ postfix_ldap_path }}/valias_domains.cf"
+    owner: root
+    group: postfix
+    mode: 0640
+  notify: restart postfix
+
+- name: Configure mailbox maps lookup
+  become: true
+  template:
+    src: vmailbox_maps.cf.j2
+    dest: "{{ postfix_ldap_path }}/vmailbox_maps.cf"
+    owner: root
+    group: postfix
+    mode: 0640
+  notify: restart postfix
+
+- name: Add virtual UID lookups
+  become: true
+  template:
+    src: vuid_maps.cf.j2
+    dest: "{{ postfix_ldap_path }}/vuid_maps.cf"
+    owner: root
+    group: postfix
+    mode: 0640
+  notify: restart postfix
+
+- name: Add virtual GID lookups
+  become: true
+  template:
+    src: vgid_maps.cf.j2
+    dest: "{{ postfix_ldap_path }}/vgid_maps.cf"
+    owner: root
+    group: postfix
+    mode: 0640
+  notify: restart postfix
+
+- name: Add SMTP Sender lookups
+  become: true
+  template:
+    src: smtp_sender_maps.cf.j2
+    dest: "{{ postfix_ldap_path }}/smtp_sender_maps.cf"
+    owner: root
+    group: postfix
+    mode: 0640
+  notify: restart postfix
