@@ -27,7 +27,7 @@
   become: true
   template:
     src: lookup.cf.j2
-    dest: "{{ postfix_ldap_path }}/lookup.cf"
+    dest: "{{ postfix_ldapdir }}/lookup.cf"
     owner: root
     group: postfix
     mode: 0640
@@ -37,7 +37,7 @@
   become: true
   template:
     src: valias_maps.cf.j2
-    dest: "{{ postfix_ldap_path }}/valias_maps.cf"
+    dest: "{{ postfix_ldapdir }}/valias_maps.cf"
     owner: root
     group: postfix
     mode: 0640
@@ -47,7 +47,7 @@
   become: true
   template:
     src: valias_domains.cf.j2
-    dest: "{{ postfix_ldap_path }}/valias_domains.cf"
+    dest: "{{ postfix_ldapdir }}/valias_domains.cf"
     owner: root
     group: postfix
     mode: 0640
@@ -57,7 +57,7 @@
   become: true
   template:
     src: vmailbox_maps.cf.j2
-    dest: "{{ postfix_ldap_path }}/vmailbox_maps.cf"
+    dest: "{{ postfix_ldapdir }}/vmailbox_maps.cf"
     owner: root
     group: postfix
     mode: 0640
@@ -67,7 +67,7 @@
   become: true
   template:
     src: vuid_maps.cf.j2
-    dest: "{{ postfix_ldap_path }}/vuid_maps.cf"
+    dest: "{{ postfix_ldapdir }}/vuid_maps.cf"
     owner: root
     group: postfix
     mode: 0640
@@ -77,7 +77,7 @@
   become: true
   template:
     src: vgid_maps.cf.j2
-    dest: "{{ postfix_ldap_path }}/vgid_maps.cf"
+    dest: "{{ postfix_ldapdir }}/vgid_maps.cf"
     owner: root
     group: postfix
     mode: 0640
@@ -87,7 +87,7 @@
   become: true
   template:
     src: smtp_sender_maps.cf.j2
-    dest: "{{ postfix_ldap_path }}/smtp_sender_maps.cf"
+    dest: "{{ postfix_ldapdir }}/smtp_sender_maps.cf"
     owner: root
     group: postfix
     mode: 0640
