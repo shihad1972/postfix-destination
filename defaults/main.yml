@@ -6,6 +6,7 @@ postfix_keydir: "{{ postfix_config }}/tls.keys"
 postfix_crtdir: "{{ postfix_config }}/tls.certificates"
 postfix_ldapdir: "{{ postfix_config }}/ldap"
 postfix_sasl_maps: "{{ postfix_config }}/sasl_maps"
+postfix_generic_maps: "{{ postfix_conf }}/generic_maps"
 
 # My specific alias
 root_alias: monkey@thargoid.co.uk
@@ -16,6 +17,7 @@ cert_file: "{{ my_fqdn }}.crt"
 my_tls_protocols: "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1"
 my_fqdn: "{{ ansible_fqdn }}"
 my_domain: "{{ ansible_domain }}"
+maildir: mailbox
 
 do_ssl: true
 do_sasl_inbound: true

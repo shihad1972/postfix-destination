@@ -15,7 +15,10 @@ mydestination = $myhostname, {{ my_fqdn }}, localhost.{{ my_domain }}, localhost
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
 inet_interfaces = all
 inet_protocols = all
-
+home_mailbox = {{ maildir }}
+{% if relayhost is defined %}
+relayhost = {{ relayhost }}
+{% endif %}
 {% if do_ssl is sameas true %}
 # SSL configuration. Added when do_ssl is true in ansible role
 smtpd_tls_cert_file={{ postfix_crtdir }}/{{ cert_file }}
@@ -49,11 +52,27 @@ smtp_sasl_mechanism_filter = login
 smtp_sasl_password_maps = hash:{{ postfix_sasl_maps }}
 {% endif %}
 
+# Virtual mailboxes
+{% if do_ldap is sameas true %}
+virtual_mailbox_maps = ldap:{{ postfix_ldap_path }}/vmailbox_maps.cf
+virtual_mailbox_domains = {{ virt_mbox_domain | default(ansible_fqdn) }}
+virtual_alias_domains = ldap:{{ postfix_ldap_path }}/valias_domains.cf
+virtual_alias_maps = ldap:{{ postfix_ldap_path }}/valias_maps.cf
+virtual_mailbox_base = /
+virtual_uid_maps = ldap:{{ postfix_ldap_path }}/vuid_maps.cf
+virtual_gid_maps = ldap:{{ postfix_ldap_path }}/vgid_maps.cf
+smtpd_sender_login_maps = ldap:{{ postfix_ldap_path }}/smtp_sender_maps.cf
+{% endif %}
 # Posfix maps
 
-alias_maps = hash:/etc/aliases
 {% if do_ldap is sameas false %}
+alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
+{% else %}
+alias_maps = hash:/etc/aliases ldap:{{ postfix_ldap_path }}/lookup.cf
+{% endif %}
+{% if generic[my_fqdn] is defined %}
+smtp_generic_maps = hash:{{ postfix_generic_maps }}
 {% endif %}
 mailbox_size_limit = 0
 recipient_delimiter = +
