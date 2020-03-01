@@ -8,7 +8,7 @@ postfix_ldapdir: "{{ postfix_config }}/ldap"
 postfix_sasl_maps: "{{ postfix_config }}/sasl_maps"
 
 # My specific alias
-monkey@thargoid.co.uk
+root_alias: monkey@thargoid.co.uk
 
 key_file: "{{ my_fqdn }}.pem"
 cert_file: "{{ my_fqdn }}.crt"
