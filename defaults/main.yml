@@ -6,7 +6,7 @@ postfix_keydir: "{{ postfix_config }}/tls.keys"
 postfix_crtdir: "{{ postfix_config }}/tls.certificates"
 postfix_ldapdir: "{{ postfix_config }}/ldap"
 postfix_sasl_maps: "{{ postfix_config }}/sasl_maps"
-postfix_generic_maps: "{{ postfix_conf }}/generic_maps"
+postfix_generic_maps: "{{ postfix_config }}/generic_maps"
 
 # My specific alias
 root_alias: monkey@thargoid.co.uk
