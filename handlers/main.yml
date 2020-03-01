@@ -16,4 +16,7 @@
 - name: postmap sasl
   become: true
   shell: "postmap {{ postfix_sasl_maps }}"
-  
+
+- name: newaliases
+  become: true
+  shell: "newaliases"
