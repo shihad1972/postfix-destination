@@ -17,6 +17,10 @@
   become: true
   shell: "postmap {{ postfix_sasl_maps }}"
 
+- name: postmap generic
+  become: true
+  shell: "postmap {{ postfix_generic_maps }}"
+
 - name: newaliases
   become: true
   shell: "newaliases"
