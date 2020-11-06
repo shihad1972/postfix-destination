@@ -29,3 +29,4 @@ groups_ou: groups
 ldap_auth:
   bind_dn: "cn={{ admin_rdn | default('manager') }}, {{ domain | hostname_to_dn}}"
   bind_pw: "{{ admin_password }}"
+generic: none
