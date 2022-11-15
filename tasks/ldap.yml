@@ -3,8 +3,8 @@
 - assert:
     that:
     - domain is defined
-    - admin_rdn is defined
-    - admin_password is defined
+    - postfix_bind_rdn is defined
+    - postfix_bind_pass is defined
     msg: "Required variable not set."
 
 - name: Install postfix LDAP package
