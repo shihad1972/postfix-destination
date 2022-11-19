@@ -6,6 +6,8 @@
   when: do_spam|bool
 - include_tasks: ssl.yml
   when: do_ssl|bool
+- include_tasks: ssl_ami.yml
+  when: do_ssl_ami|bool
 - include_tasks: ldap.yml
   when: do_ldap|bool
 - include_tasks: configure.yml

@@ -1,0 +1,19 @@
+---
+
+- name: Create SSL key directory for postfix
+  become: true
+  file:
+    path: "{{ postfix_keydir }}"
+    group: root
+    owner: root
+    mode: "0700"
+    state: directory
+
+- name: Create SSL certificate directory for postfix
+  become: true
+  file:
+    path: "{{ postfix_crtdir }}"
+    group: root
+    owner: root
+    mode: "0755"
+    state: directory

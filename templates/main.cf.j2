@@ -19,7 +19,7 @@ home_mailbox = {{ maildir }}/
 {% if relayhost is defined %}
 relayhost = {{ relayhost }}
 {% endif %}
-{% if do_ssl is sameas true %}
+{% if do_ssl or do_ssl_ami %}
 # SSL configuration. Added when do_ssl is true in ansible role
 smtpd_tls_cert_file={{ postfix_crtdir }}/{{ cert_file }}
 smtpd_tls_key_file={{ postfix_keydir }}/{{ key_file }}

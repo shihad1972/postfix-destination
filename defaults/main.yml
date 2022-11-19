@@ -20,6 +20,7 @@ my_domain: "{{ ansible_domain }}"
 maildir: mailbox
 
 do_ssl: true
+do_ssl_ami: false
 do_sasl_inbound: true
 do_spam: true
 do_ldap: false
