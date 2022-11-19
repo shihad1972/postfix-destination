@@ -3,7 +3,7 @@ smtp      inet  n       -       y       -       -       smtpd -o content_filter=
 {% else %}
 smtp      inet  n       -       y       -       -       smtpd
 {% endif %}
-{% if do_ssl is sameas true %}
+{% if do_ssl or do_ssl_ami %}
 smtps     inet  n       -       y       -       -       smtpd
   {% if do_spam is sameas true %}
   -o content_filter=spamassassin
