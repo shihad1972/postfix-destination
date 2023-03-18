@@ -22,7 +22,7 @@
   become: true
   copy:
     src: "{{ key_file }}"
-    dest: "{{ postfix_keydir }}/{{ key_file }}"
+    dest: "{{ postfix_keydir }}/{{ postfix_key_file }}"
     mode: "0600"
     owner: root
     group: root
@@ -32,7 +32,7 @@
   become: true
   copy:
     src: "{{ cert_file }}"
-    dest: "{{ postfix_crtdir }}/{{ cert_file }}"
+    dest: "{{ postfix_crtdir }}/{{ postfix_cert_file }}"
     mode: "0644"
     owner: root
     group: root
