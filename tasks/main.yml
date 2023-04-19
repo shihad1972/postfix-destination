@@ -8,6 +8,6 @@
   when: do_ssl|bool
 - include_tasks: ssl_ami.yml
   when: do_ssl_ami|bool
-- include_tasks: ldap.yml
-  when: do_ldap|bool
+- include_tasks: vdomain_ldap.yml
+  when: do_postfix_vdomain_ldap|bool
 - include_tasks: configure.yml

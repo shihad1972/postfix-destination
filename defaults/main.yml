@@ -24,7 +24,7 @@ do_ssl: true
 do_ssl_ami: false
 do_sasl_inbound: true
 do_spam: true
-do_ldap: false
+do_postfix_vdomain_ldap: false
 
 users_ou: users
 groups_ou: groups

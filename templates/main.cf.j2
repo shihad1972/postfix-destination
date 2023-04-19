@@ -53,7 +53,7 @@ smtp_sasl_password_maps = hash:{{ postfix_sasl_maps }}
 {% endif %}
 
 # Virtual mailboxes
-{% if do_ldap is sameas true %}
+{% if do_vdomain_postfix_ldap is sameas true %}
 virtual_mailbox_maps = ldap:{{ postfix_ldapdir }}/vmailbox_maps.cf
 virtual_mailbox_domains = {{ virt_mbox_domain | default(ansible_fqdn) }}
 virtual_alias_domains = ldap:{{ postfix_ldapdir }}/valias_domains.cf
