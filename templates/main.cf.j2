@@ -65,11 +65,11 @@ smtpd_sender_login_maps = ldap:{{ postfix_ldapdir }}/smtp_sender_maps.cf
 {% endif %}
 # Posfix maps
 
-{% if do_ldap is sameas false %}
+{% if do_vdomain_postfix_ldap is sameas true %}
+alias_maps = hash:/etc/aliases ldap:{{ postfix_ldapdir }}/lookup.cf
+{% else %}
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-{% else %}
-alias_maps = hash:/etc/aliases ldap:{{ postfix_ldapdir }}/lookup.cf
 {% endif %}
 {% if generic[my_fqdn] is defined %}
 smtp_generic_maps = hash:{{ postfix_generic_maps }}
