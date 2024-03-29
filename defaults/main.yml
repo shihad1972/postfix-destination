@@ -13,7 +13,7 @@ postfix_generic_maps: "{{ postfix_config }}/generic_maps"
 # My specific alias
 root_alias: monkey@thargoid.co.uk
 
-
+debian_spamassassin_service: "{{ 'spamassassin' if ansible_distribution_major_version | int <= 11 else 'spamc'}}"
 
 my_tls_protocols: "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1"
 my_fqdn: "{{ ansible_fqdn }}"

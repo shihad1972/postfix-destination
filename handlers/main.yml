@@ -7,10 +7,10 @@
     name: postfix
     state: restarted
 
-- name: restart spamassassin
+- name: restart spamassassin debian
   become: true
   service:
-    name: spamassassin
+    name: "{{ debian_spamassassin_service }}"
     state: restarted
 
 - name: postmap sasl

@@ -18,12 +18,13 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart spamassassin
+  notify: restart spamassassin debian
 
 - name: Ensure Spamassasin service is started
   become: true
   service:
-    name: spamassassin
+    name: "{{ debian_spamassassin_service }}"
     state: started
     enabled: true
+  when: ansible_distribution == 'Debian'
 
