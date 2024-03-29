@@ -49,12 +49,3 @@
     regexp: ^root
     line: "root: {{ root_alias }}"
   notify: newaliases
-
-- name: Add /etc/mailname
-  become: true
-  file:
-    dest: /etc/mailname
-    mode: 0644
-    owner: root
-    group: root
-    state: touch
