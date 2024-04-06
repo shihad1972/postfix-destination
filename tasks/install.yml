@@ -7,6 +7,13 @@
     state: present
   when: '"apt" in ansible_pkg_mgr'
 
+- name: Install postfix mysql package
+  become: true
+  apt:
+    name: postfix-mysql
+    state: present
+  when: '"apt" in ansible_pkg_mgr and mysql_generic[my_fqdn] is defined'
+
 - name: Enable postfix service
   become: true
   service:
