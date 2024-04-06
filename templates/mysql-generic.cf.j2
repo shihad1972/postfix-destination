@@ -1,0 +1,7 @@
+hosts = {{ db_host }}
+user = {{ postfix_db_user }}
+password = {{ postfix_pass }}
+dbname = {{ postfix_db_name }}
+table = generic
+select_field = rewrite
+where_field = email

@@ -1,3 +1,3 @@
-{% for map in sasl_maps %}
+{% for map in outbound_sasl_maps %}
 {{ map.relayhost }} {{ map.username }}:{{ map.password }}
 {% endfor %}
