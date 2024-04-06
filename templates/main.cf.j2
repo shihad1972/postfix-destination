@@ -78,7 +78,7 @@ alias_maps = hash:/etc/aliases ldap:{{ postfix_ldapdir }}/lookup.cf
 {% if generic[my_fqdn] is defined %}
 smtp_generic_maps = hash:{{ postfix_generic_maps }}
 {% elif mysql_generic[my_fqdn] is defined %}
-smtp_generic_maps = proxy:mysql:/etc/postfix/{{ postfix_mysql_generic_maps }}.cf
+smtp_generic_maps = proxy:mysql:{{ postfix_mysql_generic_maps }}.cf
 {% endif %}
 mailbox_size_limit = 0
 recipient_delimiter = +
