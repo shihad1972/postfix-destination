@@ -9,6 +9,7 @@ postfix_cert_file: "{{ my_fqdn }}.crt"
 postfix_ldapdir: "{{ postfix_config }}/ldap"
 postfix_sasl_maps: "{{ postfix_config }}/sasl_maps"
 postfix_generic_maps: "{{ postfix_config }}/generic_maps"
+postfix_mysql_generic_maps: "{{ postfix_config }}/mysql_generic_maps"
 
 # My specific alias
 root_alias: monkey@thargoid.co.uk
