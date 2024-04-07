@@ -1,0 +1,10 @@
+---
+
+- name: Create newaliases file
+  become: true
+  template:
+    dest: /etc/mailname
+    src: mailname.j2
+    mode: 0644
+    owner: root
+    group: root
