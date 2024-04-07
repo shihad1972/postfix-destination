@@ -3,9 +3,10 @@
 - name: Install postfix and associated packages
   become: true
   apt:
-    name: "{{ postfix_apt_pkgs }}"
+    name: "{{ item }}"
     state: present
   when: '"apt" in ansible_pkg_mgr'
+  loop: "{{ postfix_apt_pkgs }}"
 
 - name: Install postfix mysql package
   become: true
