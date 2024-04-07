@@ -29,7 +29,7 @@
     owner: root
     group: root
   notify: postmap sasl
-  when: outbound_sasl_maps is defined
+  when: sasl_authentication[my_fqdn] is defined
 
 - name: Create postfix generic maps
   become: true
